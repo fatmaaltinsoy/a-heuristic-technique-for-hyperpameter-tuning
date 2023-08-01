@@ -7,5 +7,6 @@
 </p>
 The study comprises three phases:
 <p align="justify"> 1. The SO dataset is processed to create a word matrix, enabling the application of sophisticated functions for the creation of classification labels. These labels encompass both the programming language type and the level of programming experience. Each word is considered a unique feature, aggregated from the question and answer inputs.</p>
-2. A tuning operation is performed, employing several methods, namely grid search, random search, Bayesian optimization, and Nelder-Mead, on both single-label and multi-label classification algorithms (SVM, Random Forest, GBM, EBR, and EPS). 
-3.The coding experience level is predicted based on the training data, followed by the proposal of a suitable programming book.
+<p align="justify"> 2. A tuning operation is performed, employing several methods, namely grid search, random search, Bayesian optimization, and Nelder-Mead, on both single-label and multi-label classification algorithms (SVM, Random Forest, GBM, EBR, and EPS).</p>
+<p align="justify"> 3.The coding experience level is predicted based on the training data, followed by the proposal of a suitable programming book.</p>
+
