@@ -12,5 +12,5 @@ The study comprises three phases:
 
 # Data set
 <p align="justify"> In this case study, we utilized the Stack Overflow corpus, which regularly provides question-answer inputs to researchers for public use. The corpus consists of two types of data: questions and tags.</p>
-1. Questions.csv (https://www.kaggle.com/stackoverflow/stacksample)
-2. Tags.csv (https://www.kaggle.com/stackoverflow/stacksample)
+<p align="justify"> 1. Questions.csv (https://www.kaggle.com/stackoverflow/stacksample) </p>
+<p align="justify"> 2. Tags.csv (https://www.kaggle.com/stackoverflow/stacksample) </p>
