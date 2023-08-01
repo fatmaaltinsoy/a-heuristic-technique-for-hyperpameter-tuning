@@ -1,4 +1,4 @@
-########labeling functions######################
+########labeling functions#######################
 tagHesaplaJs <- function(x){
 j=1
 uzunluk <- length(tagData[,1])
