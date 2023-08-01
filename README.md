@@ -10,3 +10,7 @@ The study comprises three phases:
 <p align="justify"> 2. A tuning operation is performed, employing several methods, namely grid search, random search, Bayesian optimization, and Nelder-Mead, on both single-label and multi-label classification algorithms (SVM, Random Forest, GBM, EBR, and EPS).</p>
 <p align="justify"> 3.The coding experience level is predicted based on the training data, followed by the proposal of a suitable programming book.</p>
 
+# Data set
+<p align="justify"> In this case study, we utilized the Stack Overflow corpus, which regularly provides question-answer inputs to researchers for public use. The corpus consists of two types of data: questions and tags.</p>
+1. Questions.csv (https://www.kaggle.com/stackoverflow/stacksample)
+2. Tags.csv (https://www.kaggle.com/stackoverflow/stacksample)
