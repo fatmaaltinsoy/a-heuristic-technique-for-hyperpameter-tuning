@@ -14,3 +14,7 @@ The study comprises three phases:
 <p align="justify"> In this case study, we utilized the Stack Overflow corpus, which regularly provides question-answer inputs to researchers for public use. The corpus consists of two types of data: questions and tags.</p>
 <p align="justify"> 1. Questions.csv (https://www.kaggle.com/stackoverflow/stacksample) </p>
 <p align="justify"> 2. Tags.csv (https://www.kaggle.com/stackoverflow/stacksample) </p>
+<p align="justify"> The former includes questions covering over twenty programming languages, with a total of 1,048,575 instances. It is very difficult to load all the instances to the RAM. Instead you can download question1.csv to make a small experiment.</p>
+
+# Labeling
+<p align="justify"> A function is written to determine whether the question dataset contains JavaScript, SQL, Java, C#, Python, C++, C, PHP, Ruby, Swift, Objective-C, VB.NET, Perl, Bash, CSS, Scala, HTML, Lua, Haskell, Markdown, and R programming languages. The labeling process involved assigning a value of 1 to indicate that a question included a keyword related to a programming language, while a value of 0 was assigned if the question was not related. Both the title and body of the questions were utilized to create labels indicating the coding experience of the users.</p>
