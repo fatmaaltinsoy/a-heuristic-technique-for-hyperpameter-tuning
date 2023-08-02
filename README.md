@@ -39,7 +39,7 @@ install.packages("tm")
 install.packages("plyr")
 install.packages("caret")
 ```
-<p align="justify"> Step 2. For hyperparameter optimization, the following libraries need to be installed. The caret library is used for grid search and random search.</p>
+<p align="justify"> Step 2. For hyperparameter optimization, the following libraries need to be installed. The <b>caret library</b> is used for grid search and random search.</p>
 
 <p align="justify"><b>MlBayesOpt:</b> MlBayesOpt is a package for performing Bayesian optimization, which is a powerful optimization technique that can be used to find the optimal values of hyperparameters for machine learning models. It uses a probabilistic model to efficiently explore the hyperparameter space and find the configuration that maximizes the performance of the model.
 
@@ -48,4 +48,23 @@ install.packages("caret")
 ```sh
 install.packages("MlBayesOpt")
 install.packages("nloptr")
+```
+Step 3. To use the random forest, GBM, SVM, EPS, and EBR algorithms, the following libraries need to be installed.
+
+<p align="justify"><b>randomForest:</b> An R package for the Random Forest algorithm. Random Forest is an ensemble method that combines multiple decision trees to achieve high-performance classification and regression tasks.
+
+<p align="justify"><b>gbm:</b> An R package for Gradient Boosting Machine (GBM) algorithm. GBM combines weak learners (often decision trees) to create a stronger learner and provides effective results for classification and regression problems.
+
+<p align="justify"><b>e1071:</b> This R package provides functions and tools for the Support Vector Machine (SVM) algorithm. SVM is a powerful machine learning algorithm used for classification and regression tasks.
+
+<p align="justify"><b>utiml:</b> An R package for multi-label classification and label space operations. This package facilitates the processing and evaluation of multi-label datasets.
+
+<p align="justify"><b>mldr:</b> This R package is used to represent and process multi-label datasets. The mldr package allows the creation of label spaces containing datasets for multi-label classification.
+
+```sh
+install.packages("randomForest")
+install.packages("gbm")
+install.packages("e1071")
+install.packages("utiml")
+install.packages("mldr")
 ```
