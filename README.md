@@ -25,13 +25,14 @@ The study comprises three phases:
 # Installation
 Step 1. In order to run the code in code.R, it is necessary to load these libraries first.
 
-<p align="justify">rlist: The "rlist" package provides functions to work with lists in R. It includes various utility functions for manipulating and accessing elements in lists, making it easier to work with complex data structures.</p>
+<p align="justify"><b>rlist:</b> The "rlist" package provides functions to work with lists in R. It includes various utility functions for manipulating and accessing elements in lists, making it easier to work with complex data structures.</p>
 
-<p align="justify">tm: The "tm" (Text Mining) package is designed for text mining and natural language processing tasks in R. It provides functions for preprocessing text data, such as removing punctuation, stopwords, and stemming, and allows users to create term-document matrices for further analysis.</p>
+<p align="justify"><b>tm:</b> The "tm" (Text Mining) package is designed for text mining and natural language processing tasks in R. It provides functions for preprocessing text data, such as removing punctuation, stopwords, and stemming, and allows users to create term-document matrices for further analysis.</p>
 
-<p align="justify">plyr: The "plyr" package is used for data manipulation and transformation tasks. It provides a set of functions for splitting, applying, and combining data in various ways. The package's main functions are ddply, dlply, and adply, which help to perform operations on data frames and return the results in an organized manner.</p>
+<p align="justify"><b>plyr:</b> The "plyr" package is used for data manipulation and transformation tasks. It provides a set of functions for splitting, applying, and combining data in various ways. The package's main functions are ddply, dlply, and adply, which help to perform operations on data frames and return the results in an organized manner.</p>
 
-<p align="justify">caret: The "caret" (Classification And Regression Training) package is widely used for machine learning tasks in R. It provides a consistent interface for building and comparing different models, handling data preprocessing steps, and tuning hyperparameters. It is especially useful for classification and regression tasks.</p>
+<p align="justify"><b>caret:</b> The "caret" (Classification And Regression Training) package is widely used for machine learning tasks in R. It provides a consistent interface for building and comparing different models, handling data preprocessing steps, and tuning hyperparameters. It is especially useful for classification and regression tasks.</p>
+
 ```sh
 install.packages("rlist")
 install.packages("tm")
