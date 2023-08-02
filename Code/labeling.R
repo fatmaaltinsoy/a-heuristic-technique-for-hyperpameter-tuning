@@ -1,7 +1,6 @@
 ########labeling functions#######################
 tagHesaplaJs <- function(x){
 j=1
-uzunluk <- length(tagData[,1])
 while(j<3000){
 	if(x==tagData[j,1])
 	{
@@ -14,7 +13,6 @@ return(0)
 }
 tagHesaplaSql <- function(x){
 j=1
-uzunluk <- length(tagData[,1])
 while(j<3000){
 	if(x==tagData[j,1])
 	{
@@ -27,7 +25,6 @@ return(0)
 }
 tagHesaplaJava <- function(x){
 j=1
-uzunluk <- length(tagData[,1])
 while(j<3000){
 	if(x==tagData[j,1])
 	{
@@ -40,7 +37,6 @@ return(0)
 }
 tagHesaplaSharp <- function(x){
 j=1
-uzunluk <- length(tagData[,1])
 while(j<3000){
 	if(x==tagData[j,1])
 	{
@@ -53,7 +49,6 @@ return(0)
 }
 tagHesaplaPy <- function(x){
 j=1
-uzunluk <- length(tagData[,1])
 while(j<3000){
 	if(x==tagData[j,1])
 	{
@@ -65,8 +60,7 @@ j <- j+1
 return(0)
 }
 tagHesaplaCpp <- function(x){
-j=1
-uzunluk <- length(tagData[,1])
+j=1	
 while(j<3000){
 	if(x==tagData[j,1])
 	{
@@ -79,7 +73,6 @@ return(0)
 }
 tagHesaplaC <- function(x){
 j=1
-uzunluk <- length(tagData[,1])
 while(j<3000){
 	if(x==tagData[j,1])
 	{
@@ -92,7 +85,6 @@ return(0)
 }
 tagHesaplaphp <- function(x){
 j=1
-uzunluk <- length(tagData[,1])
 while(j<3000){
 	if(x==tagData[j,1])
 	{
@@ -105,7 +97,6 @@ return(0)
 }
 tagHesaplaRuby <- function(x){
 j=1
-uzunluk <- length(tagData[,1])
 while(j<3000){
 	if(x==tagData[j,1])
 	{
@@ -118,7 +109,6 @@ return(0)
 }
 tagHesaplaSwift <- function(x){
 j=1
-uzunluk <- length(tagData[,1])
 while(j<3000){
 	if(x==tagData[j,1])
 	{
@@ -131,7 +121,6 @@ return(0)
 }
 tagHesaplaObjective <- function(x){
 j=1
-uzunluk <- length(tagData[,1])
 while(j<3000){
 	if(x==tagData[j,1])
 	{
@@ -144,7 +133,6 @@ return(0)
 }
 tagHesaplaVb <- function(x){
 j=1
-uzunluk <- length(tagData[,1])
 while(j<3000){
 	if(x==tagData[j,1])
 	{
@@ -157,7 +145,6 @@ return(0)
 }
 tagHesaplaPerl <- function(x){
 j=1
-uzunluk <- length(tagData[,1])
 while(j<3000){
 	if(x==tagData[j,1])
 	{
@@ -170,7 +157,6 @@ return(0)
 }
 tagHesaplaBash <- function(x){
 j=1
-uzunluk <- length(tagData[,1])
 while(j<3000){
 	if(x==tagData[j,1])
 	{
@@ -183,7 +169,6 @@ return(0)
 }
 tagHesaplaCss <- function(x){
 j=1
-uzunluk <- length(tagData[,1])
 while(j<3000){
 	if(x==tagData[j,1])
 	{
@@ -196,7 +181,6 @@ return(0)
 }
 tagHesaplaScala <- function(x){
 j=1
-uzunluk <- length(tagData[,1])
 while(j<3000){
 	if(x==tagData[j,1])
 	{
@@ -209,7 +193,6 @@ return(0)
 }
 tagHesaplaHtml <- function(x){
 j=1
-uzunluk <- length(tagData[,1])
 while(j<3000){
 	if(x==tagData[j,1])
 	{
@@ -222,7 +205,6 @@ return(0)
 }
 tagHesaplaLua <- function(x){
 j=1
-uzunluk <- length(tagData[,1])
 while(j<3000){
 	if(x==tagData[j,1])
 	{
@@ -235,7 +217,6 @@ return(0)
 }
 tagHesaplaHaskell <- function(x){
 j=1
-uzunluk <- length(tagData[,1])
 while(j<3000){
 	if(x==tagData[j,1])
 	{
@@ -248,7 +229,6 @@ return(0)
 }
 tagHesaplaMarkdown <- function(x){
 j=1
-uzunluk <- length(tagData[,1])
 while(j<3000){
 	if(x==tagData[j,1])
 	{
@@ -261,7 +241,6 @@ return(0)
 }
 tagHesaplaR <- function(x){
 j=1
-uzunluk <- length(tagData[,1])
 while(j<3000){
 	if(x==tagData[j,1])
 	{
