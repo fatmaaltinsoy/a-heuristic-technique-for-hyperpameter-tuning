@@ -23,13 +23,15 @@ The study comprises three phases:
 <p align="justify"> processedDataset.csv is essential for conducting hyperparameter optimization, which involves applying grid search, random search, Bayesian optimization, Nelder-Mead, and the proposed method on various algorithms including GBM, random forest, SVM, EBR, and EPS. The goal of this optimization is to enhance the accuracy of programming experience prediction. The accuracy results obtained from these experiments are accompanied by time and memory consumption statistics. In the files randomForest.R, GBM.R, SVM.R, EPS.R, and EBR.R, all hyperparameter optimization processes and codes are explained in detail.</p>
 
 # Installation
-Step 1. In order to run the code in code.R, it is necessary to load these libraries first. rlist: The "rlist" package provides functions to work with lists in R. It includes various utility functions for manipulating and accessing elements in lists, making it easier to work with complex data structures.
+Step 1. In order to run the code in code.R, it is necessary to load these libraries first.
 
-tm: The "tm" (Text Mining) package is designed for text mining and natural language processing tasks in R. It provides functions for preprocessing text data, such as removing punctuation, stopwords, and stemming, and allows users to create term-document matrices for further analysis.
+<p align="justify">rlist: The "rlist" package provides functions to work with lists in R. It includes various utility functions for manipulating and accessing elements in lists, making it easier to work with complex data structures.</p>
 
-plyr: The "plyr" package is used for data manipulation and transformation tasks. It provides a set of functions for splitting, applying, and combining data in various ways. The package's main functions are ddply, dlply, and adply, which help to perform operations on data frames and return the results in an organized manner.
+<p align="justify">tm: The "tm" (Text Mining) package is designed for text mining and natural language processing tasks in R. It provides functions for preprocessing text data, such as removing punctuation, stopwords, and stemming, and allows users to create term-document matrices for further analysis.</p>
 
-caret: The "caret" (Classification And Regression Training) package is widely used for machine learning tasks in R. It provides a consistent interface for building and comparing different models, handling data preprocessing steps, and tuning hyperparameters. It is especially useful for classification and regression tasks.
+<p align="justify">plyr: The "plyr" package is used for data manipulation and transformation tasks. It provides a set of functions for splitting, applying, and combining data in various ways. The package's main functions are ddply, dlply, and adply, which help to perform operations on data frames and return the results in an organized manner.</p>
+
+<p align="justify">caret: The "caret" (Classification And Regression Training) package is widely used for machine learning tasks in R. It provides a consistent interface for building and comparing different models, handling data preprocessing steps, and tuning hyperparameters. It is especially useful for classification and regression tasks.</p>
 ```sh
 install.packages("rlist")
 install.packages("tm")
