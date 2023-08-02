@@ -21,3 +21,11 @@ The study comprises three phases:
 
 # Hyperparameter Optimization
 <p align="justify"> processedDataset.csv is essential for conducting hyperparameter optimization, which involves applying grid search, random search, Bayesian optimization, Nelder-Mead, and the proposed method on various algorithms including GBM, random forest, SVM, EBR, and EPS. The goal of this optimization is to enhance the accuracy of programming experience prediction. The accuracy results obtained from these experiments are accompanied by time and memory consumption statistics. In the files randomForest.R, GBM.R, SVM.R, EPS.R, and EBR.R, all hyperparameter optimization processes and codes are explained in detail.</p>
+
+# Installation
+Step 1.
+```sh
+install.packages("rlist")
+install.packages("tm")
+install.packages("utiml")
+```
