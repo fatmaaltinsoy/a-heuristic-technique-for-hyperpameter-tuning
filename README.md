@@ -39,3 +39,13 @@ install.packages("tm")
 install.packages("plyr")
 install.packages("caret")
 ```
+Step 2. For hyperparameter optimization, the following libraries need to be installed. The caret library is used for grid search and random search.
+
+<p align="justify"><b>MlBayesOpt:</b> MlBayesOpt is a package for performing Bayesian optimization, which is a powerful optimization technique that can be used to find the optimal values of hyperparameters for machine learning models. It uses a probabilistic model to efficiently explore the hyperparameter space and find the configuration that maximizes the performance of the model.
+
+<p align="justify"><b>nloptr:</b> nloptr is a package for nonlinear optimization. It provides a collection of optimization algorithms that can be used to find the minimum or maximum of a nonlinear objective function, subject to optional constraints. This package is useful for various optimization problems, including hyperparameter optimization for machine learning models.
+
+```sh
+install.packages("MlBayesOpt")
+install.packages("nloptr")
+```
