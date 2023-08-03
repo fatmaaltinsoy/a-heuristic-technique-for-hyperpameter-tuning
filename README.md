@@ -33,7 +33,7 @@ Step 1. In order to run the code in code.R, it is necessary to load these librar
 
 <p align="justify"><b>caret:</b> The "caret" (Classification And Regression Training) package is widely used for machine learning tasks in R. It provides a consistent interface for building and comparing different models, handling data preprocessing steps, and tuning hyperparameters. It is especially useful for classification and regression tasks.</p>
 
-<p align="justify"><b>caTools:</b> The "caTools" The "caTools" package in R is a collection of utility functions that provide useful tools for various data manipulation and preprocessing tasks. It offers functions to split datasets, standardize data, create dummy variables, and compute logit transformations, among other functionalities. These functions are particularly valuable for preparing data for machine learning models.</p>
+<p align="justify"><b>caTools:</b> The "caTools" package in R is a collection of utility functions that provide useful tools for various data manipulation and preprocessing tasks. It offers functions to split datasets, standardize data, create dummy variables, and compute logit transformations, among other functionalities. These functions are particularly valuable for preparing data for machine learning models.</p>
 
 ```sh
 install.packages("rlist")
