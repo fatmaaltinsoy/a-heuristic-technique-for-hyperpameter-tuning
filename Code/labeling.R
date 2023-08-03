@@ -1,4 +1,8 @@
-########labeling functions#######################
+########labeling functions######################
+###While calling function, if the skip option is set during taking data from question.csv
+###call function as tagData[j+skip,1]
+###the functions below are devised for 3000 instances
+###to search all instances, replace 3000 with rowCount 
 tagHesaplaJs <- function(x){
 j=1
 while(j<3000){
