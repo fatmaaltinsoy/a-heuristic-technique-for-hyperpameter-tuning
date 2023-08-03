@@ -21,7 +21,7 @@ while(k<folderCount){
 new<-unlist(mydata[8], use.names=FALSE)
 ##text
 new2 <-unlist(mydata[7], use.names=FALSE)
-##bu ayarlama alti adet dokuman cikarir tdm de
+##this setting produces six documents in tdm
 new <- as.character(new[k])
 new2 <- as.character(new2[k])
 ###word and char count
@@ -45,12 +45,11 @@ tm_corpus <- tm_map(tm_corpus, stripWhitespace)
 tdm <- TermDocumentMatrix(tm_corpus)
 x<-as.matrix(tdm)
 
-##kelime sikliklari
+##word frequencies
 freq <- rowSums(x)
 write.csv(freq,"C:/Users/Desktop/stack/freq.csv")
 
-###satirlari sutun sutunlari satir yapiyoruz her kelimeyi ozellik
-##olarak almak icin
+###we make rows column by row to get each word as an attribute
  jk <- read.csv("C:/Users/Desktop/stack/freq.csv")
 jk2 <- data.frame(t(jk[-1]),vektor,vektor2)
 index <- length(jk2)
@@ -63,7 +62,7 @@ names(jk2)[index2] <- "wordCount"
 k<- k+1
 }
 
-##########dosyalar birlesitiriliyor
+##########files are merged
 library(plyr)
 i=1
 veriList <- list()
@@ -81,8 +80,8 @@ result <- as.data.frame(result)
 result <- result[,-1]
 write.csv(result,"C:/Users/Desktop/stack/result.csv")
 result
-########ozellik birlestirme sonu###
-###########kural tabanli labeling bolumu#########
+########property merge end###
+###########rule-based labeling section#########
 value <- colnames(result)
 col <- length(result[1,])
 row <- length(result[,1])
@@ -420,9 +419,9 @@ while(i<=row)
 	ortaCount=0
 	yuksekCount=0
 }
-###kural tabanli labeling sonu
+###end of rule based labeling
 ###############feature selection
-###yuksek korelasyona sahip ozellikler silinecek
+###features with high correlation will be deleted
 library(caret)
 correlationMatrix <- cor(result)
 wC <- result$wordCount
@@ -431,21 +430,21 @@ highlyCorrelated <- findCorrelation(correlationMatrix, cutoff=0.7)
 result = subset(result, select = -highlyCorrelated )
 result <- data.frame(wC,cC,result)
 ############################
-#####Id eklemebolumu
+#####Adding Id
 ##################################
-###bu satiri biri 50 digeri 51 satir ciktigi icin yazdik
+###We wrote this line because one of them has 50 lines and the other 51 lines.
 #############################
 folderCount<- folderCount-1
 result <- data.frame(mydata[1:folderCount,2],result)
 names(result)[1]<-paste("Id")
 ####################################
-#######yuksek korelasyonlu sutunlarin silinmesi son
+#######deletion of highly correlated columns
 #########################################
 
 
-############1-50 arasi sutunlari aliyorum####################
+############I get columns 1-50####################
 result <- result[,1:50]
-########multi-class ekliyorum############
+########I add multi-class############
 #result <- data.frame(result,experience)
 result <- data.frame(result,y1,y2,y3,y4,y5,y6,y7,y8,y9,y10,y11,y12,y13,y14,y15,y16,y17,y18,y19,y20,y21,y22,y23)
 write.csv(result,file="C:/Users/Desktop/stack/processedDataset.csv")
