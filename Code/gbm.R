@@ -3,6 +3,7 @@ library(caTools)
 library(caret)
 library(gbm)
 library(dplyr)
+
 #proposed method for shrinkage
 start_time <- Sys.time()
 dataGroup <- read.csv("C:/Users/Desktop/stack/processedDataset.csv")
@@ -90,7 +91,7 @@ mem_used()
 # proposed method for gbm minobsinnode
 
 start_time <- Sys.time()
-dataGroup <- read.csv("C:/Users/Desktop/stack/islenmisDosya3.csv")
+dataGroup <- read.csv("C:/Users/Desktop/stack/processedDataset.csv")
 dataset<-dataGroup %>% mutate(y22=recode(y22, 
                                          `1`="beginner",
                                          `2`="intermediate",
@@ -174,7 +175,7 @@ mem_used()
 
 #proposed meethod gbm ntree
 start_time <- Sys.time()
-dataGroup <- read.csv("C:/Users/Desktop/stack/islenmisDosya3.csv")
+dataGroup <- read.csv("C:/Users/Desktop/stack/processedDataset.csv")
 dataset<-dataGroup %>% mutate(y22=recode(y22, 
                                          `1`="beginner",
                                          `2`="intermediate",
@@ -253,7 +254,7 @@ mem_used()
 
 #hyperparameter tuning grid and random shrinkage
 start_time <- Sys.time()
-dataGroup <- read.csv("C:/Users/Desktop/stack/islenmisDosya3.csv")
+dataGroup <- read.csv("C:/Users/Desktop/stack/processedDataset.csv")
 dataset<-dataGroup %>% mutate(y22=recode(y22, 
                                          `1`="beginner",
                                          `2`="intermediate",
@@ -281,7 +282,7 @@ mem_used()
 
 #hyperparameter tuning grid and random search ntree
 start_time <- Sys.time()
-dataGroup <- read.csv("C:/Users/Desktop/stack/islenmisDosya3.csv")
+dataGroup <- read.csv("C:/Users/Desktop/stack/processedDataset.csv")
 dataset<-dataGroup %>% mutate(y22=recode(y22, 
                                          `1`="beginner",
                                          `2`="intermediate",
@@ -307,7 +308,7 @@ mem_used()
                               
 ##hyperparameter tuning grid and random search n.minobsinnode
 start_time <- Sys.time()
-dataGroup <- read.csv("C:/Users/Desktop/stack/islenmisDosya3.csv")
+dataGroup <- read.csv("C:/Users/Desktop/stack/processedDataset.csv")
 dataset<-dataGroup %>% mutate(y22=recode(y22, 
                                          `1`="beginner",
                                          `2`="intermediate",
@@ -335,7 +336,7 @@ mem_used()
 #bayesian search
 library("rBayesianOptimization")
 start_time <- Sys.time()
-dataGroup <- read.csv("C:/Users/Desktop/stack/islenmisDosya3.csv")
+dataGroup <- read.csv("C:/Users/Desktop/stack/processedDataset.csv")
 dataset<-dataGroup %>% mutate(y22=recode(y22, 
                                          `1`="beginner",
                                          `2`="intermediate",
@@ -382,7 +383,7 @@ mem_used()
 #shrinkage bayesian search
 library("rBayesianOptimization")
 start_time <- Sys.time()
-dataGroup <- read.csv("C:/Users/Desktop/stack/islenmisDosya3.csv")
+dataGroup <- read.csv("C:/Users/Desktop/stack/processedDataset.csv")
 dataset<-dataGroup %>% mutate(y22=recode(y22, 
                                          `1`="beginner",
                                          `2`="intermediate",
@@ -431,7 +432,7 @@ mem_used()
 #neldermead minobsinnode
 start_time <- Sys.time()
 optimize <-function(minobsinnode){
-dataGroup <- read.csv("C:/Users/Desktop/stack/islenmisDosya3.csv")
+dataGroup <- read.csv("C:/Users/Desktop/stack/processedDataset.csv")
   
   dataset<-dataGroup %>% mutate(y22=recode(y22, 
                                            `1`="beginner",
@@ -478,7 +479,7 @@ mem_used()
 #nelder meaad shrinkage
 start_time <- Sys.time()
 optimize <-function(shrinkage){
-  dataGroup <- read.csv("C:/Users/Desktop/stack/islenmisDosya3.csv") 
+  dataGroup <- read.csv("C:/Users/Desktop/stack/processedDataset.csv") 
   
   dataset<-dataGroup %>% mutate(y22=recode(y22, 
                                            `1`="beginner",
@@ -528,7 +529,7 @@ library(caTools)
 library(caret)
 library(gbm)
 start_time <- Sys.time()
-dataGroup <- read.csv("C:/Users/fatmaaltinsoy/Desktop/stack/islenmisDosya3.csv")
+dataGroup <- read.csv("C:/Users/Desktop/stack/processedDataset.csv")
 
 library(dplyr)
 
@@ -564,11 +565,11 @@ while(count2 <= 17){
                     cv.folds = 2,
                     shrinkage = hyperOpt,
                     n.minobsinnode = 5,
-                    n.trees = 100)       # 500 tress to be built
+                    n.trees = 100)      
     summary(model_gbm)
     pred_test = predict.gbm(object = model_gbm,
                             newdata = test,
-                            n.trees = 100,           # 500 tress to be built
+                            n.trees = 100,          
                             type = "response")
     class_names = colnames(pred_test)[apply(pred_test, 1, which.max)]
     result = data.frame(test$y22, class_names)
@@ -597,31 +598,22 @@ while(count2 <= 17){
 }
 Total <- cbind(matris,matris2,matris3,matris4)
 
-write.csv(Total,"D:/doktora/R-projeler/gbmshrinkagegrid.csv")
+write.csv(Total,"C:/Desktop/gbmshrinkagegrid.csv")
 end_time <- Sys.time()
 
 end_time - start_time
 mem_used()
 
 #gbm RANDOM shrikage
-library(rlist)
-library(caTools)
-library(caret)
-library(gbm)
 start_time <- Sys.time()
-dataGroup <- read.csv("C:/Users/fatmaaltinsoy/Desktop/stack/islenmisDosya3.csv")
-
-library(dplyr)
-
+dataGroup <- read.csv("C:/Users/Desktop/stack/processedDataset.csv")
 dataset<-dataGroup %>% mutate(y22=recode(y22, 
                                          `1`="beginner",
                                          `2`="intermediate",
                                          `3`="high",
                                          `0`="unknown"))
-dataset
 # Splitting data in train and test data
 split <- sample.split(dataset, SplitRatio = 0.7)
-split
 train <- subset(dataset, split == "TRUE")
 test <- subset(dataset, split == "FALSE")
 count <-1
@@ -630,12 +622,10 @@ matris <- list("iter")
 matris2 <- list("time")
 matris3 <- list("accuracy")
 matris4 <- list("hyperOpt")
-
 while(count2 <= 17){
   sTime <- Sys.time()
   count <-1
-  count2 <- count2+1
-  
+  count2 <- count2+1  
   hyper <- runif(1, 0.001, 0.1)
   while(count<count2){
     hyperOpt <- sample(hyper,1,replace = TRUE)
@@ -645,18 +635,17 @@ while(count2 <= 17){
                     cv.folds = 2,
                     shrinkage = hyperOpt,
                     n.minobsinnode = 5,
-                    n.trees = 100)       # 500 tress to be built
+                    n.trees = 100)     
     summary(model_gbm)
     pred_test = predict.gbm(object = model_gbm,
                             newdata = test,
-                            n.trees = 100,           # 500 tress to be built
+                            n.trees = 100,        
                             type = "response")
     class_names = colnames(pred_test)[apply(pred_test, 1, which.max)]
     result = data.frame(test$y22, class_names)
     sqrt(min(model_gbm$cv.error))
     class_names[898] <- "high"
-    class_names[899] <- "intermediate"
-    #conf_mat = confusionMatrix(test$y22, as.factor(class_names))
+    class_names[899] <- "intermediate"   
     conf_mat = confusionMatrix(as.factor(test$y22), as.factor(class_names))
     accuracy<-conf_mat
     accuracy<-(conf_mat$overall[1])
@@ -664,8 +653,7 @@ while(count2 <= 17){
     count <- count+1
     if(count2==17){
       break;
-    }
-    
+    }    
   }
   s2Time <- Sys.time()
   matris <- list.append(matris,count2)
@@ -677,10 +665,8 @@ while(count2 <= 17){
   }
 }
 Total <- cbind(matris,matris2,matris3,matris4)
-
-write.csv(Total,"D:/doktora/R-projeler/gbmshrinkagerandom.csv")
+write.csv(Total,"C:/Desktop/gbmshrinkagerandom.csv")
 end_time <- Sys.time()
-
 end_time - start_time
 mem_used()
 
