@@ -69,6 +69,9 @@ while(accuracy<0.60 || count<=50) ### count is the number of iterations. You can
       j=j-100;
   }
   count=count+1
+   if(count==50){
+    break;
+  }
 }
 
 resultListTotal <- cbind(resultList4,resultList,resultList2,resultList3) ### This line combines the "resultList4", "resultList", "resultList2", and "resultList3" lists into a single matrix "resultListTotal".
