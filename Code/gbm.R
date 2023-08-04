@@ -528,16 +528,14 @@ end_time <- Sys.time()
 end_time - start_time
 mem_used()
                               
-#gbm grid shrikage
+#gbm grid shrinkage
 library(rlist)
 library(caTools)
 library(caret)
 library(gbm)
 start_time <- Sys.time()
 dataGroup <- read.csv("C:/Users/Desktop/stack/processedDataset.csv")
-
 library(dplyr)
-
 dataset<-dataGroup %>% mutate(y22=recode(y22, 
                                          `1`="beginner",
                                          `2`="intermediate",
@@ -562,8 +560,8 @@ while(count2 <= 17){
   count2 <- count2+1
   
   hyper <- runif(1, 0.001, 0.1)
-  while(count<count2){
-    hyperOpt <- sample(hyper,1,replace = FALSE)
+  while(count<count2){ ### A while loop is used to perform the hyperparameter optimization process multiple times with different shrinkage values.
+    hyperOpt <- sample(hyper,1,replace = FALSE) ### The "hyper" variable contains a range of hyperparameter values for the GBM model, and this line is responsible for randomly selecting one value from that range without replacement.
     model_gbm = gbm(y22 ~.,
                     data = train,
                     distribution = "multinomial",
@@ -580,8 +578,7 @@ while(count2 <= 17){
     result = data.frame(test$y22, class_names)
     sqrt(min(model_gbm$cv.error))
     class_names[898] <- "advanced"
-    class_names[899] <- "intermediate"
-    #conf_mat = confusionMatrix(test$y22, as.factor(class_names))
+    class_names[899] <- "intermediate"  
     conf_mat = confusionMatrix(as.factor(test$y22), as.factor(class_names))
     accuracy<-conf_mat
     accuracy<-(conf_mat$overall[1])
@@ -593,6 +590,7 @@ while(count2 <= 17){
     
   }
   s2Time <- Sys.time()
+  ###The iteration number, execution time, accuracy, and the selected hyperparameter value are stored in separate lists (matris, matris2, matris3, matris4) during each iteration.
   matris <- list.append(matris,count2)
   matris2 <- list.append(matris2,s2Time-sTime)
   matris3 <- list.append(matris3,accuracy)
@@ -602,14 +600,12 @@ while(count2 <= 17){
   }
 }
 Total <- cbind(matris,matris2,matris3,matris4)
-
-write.csv(Total,"C:/Desktop/gbmshrinkagegrid.csv")
+write.csv(Total,"C:/Desktop/gbmshrinkagegrid.csv") ###The results are combined into a data frame "Total" and exported as a CSV file named "gbmshrinkagegrid.csv."
 end_time <- Sys.time()
-
 end_time - start_time
 mem_used()
 
-#gbm RANDOM shrikage
+#gbm RANDOM shrinkage
 start_time <- Sys.time()
 dataGroup <- read.csv("C:/Users/Desktop/stack/processedDataset.csv")
 dataset<-dataGroup %>% mutate(y22=recode(y22, 
