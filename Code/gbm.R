@@ -7,7 +7,7 @@ library(dplyr)
 #proposed method for shrinkage
 start_time <- Sys.time()
 dataGroup <- read.csv("C:/Users/Desktop/stack/processedDataset.csv")
-dataset<-dataGroup %>% mutate(y22=recode(y22, 
+dataset<-dataGroup %>% mutate(y22=recode(y22, ### This code block renames the "y22" column in the dataset to meaningful labels ("beginner," "intermediate," "high," and "unknown") using the "mutate" function from the "dplyr" package.
                          `1`="beginner",
                          `2`="intermediate",
                          `3`="high",
@@ -27,7 +27,7 @@ accuracyOld<-0.2
 max<--1
 maxShrinkage<--1
 count<-0
-while(accuracy<0.69 || count<=15)
+while(accuracy<0.69 || count<=15) ### The while loop iterates until the accuracy reaches 0.69 or until the maximum number of iterations (15) is reached. The goal is to optimize the "shrinkage" parameter of the GBM algorithm.
 {  
   accuracyOld<-accuracy
   model_gbm = gbm(y22 ~.,
