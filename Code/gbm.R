@@ -7,10 +7,10 @@ library(dplyr)
 #proposed method for shrinkage
 start_time <- Sys.time()
 dataGroup <- read.csv("C:/Users/Desktop/stack/processedDataset.csv")
-dataset<-dataGroup %>% mutate(y22=recode(y22, ### This code block renames the "y22" column in the dataset to meaningful labels ("beginner," "intermediate," "high," and "unknown") using the "mutate" function from the "dplyr" package.
+dataset<-dataGroup %>% mutate(y22=recode(y22, ### This code block renames the "y22" (experience) column in the dataset to meaningful labels ("beginner," "intermediate," "advanced," and "unknown") using the "mutate" function from the "dplyr" package.
                          `1`="beginner",
                          `2`="intermediate",
-                         `3`="high",
+                         `3`="advanced",
                          `0`="unknown"))
 # Splitting data in train and test data
 split <- sample.split(dataset, SplitRatio = 0.7)
@@ -27,10 +27,10 @@ accuracyOld<-0.2
 max<--1
 maxShrinkage<--1
 count<-0
-while(accuracy<0.69 || count<=15) ### The while loop iterates until the accuracy reaches 0.69 or until the maximum number of iterations (15) is reached. The goal is to optimize the "shrinkage" parameter of the GBM algorithm.
+while(accuracy<0.69 || count<=15) ### The while loop iterates until the accuracy reaches 0.69 or until the maximum number of iterations (15) is reached. You can change it.
 {  
   accuracyOld<-accuracy
-  model_gbm = gbm(y22 ~.,
+  model_gbm = gbm(y22 ~., ### Inside the loop, the GBM model is trained with the current value of "shrinkage" (j) using the "gbm" function. The "predict.gbm" function is used to make predictions on the test set.
                   data = train,
                   distribution = "multinomial",
                   cv.folds = 2,
@@ -45,7 +45,7 @@ while(accuracy<0.69 || count<=15) ### The while loop iterates until the accuracy
   class_names = colnames(pred_test)[apply(pred_test, 1, which.max)]
   result = data.frame(test$y22, class_names)
   sqrt(min(model_gbm$cv.error))
-  class_names[898] <- "high"
+  class_names[898] <- "advanced"
   class_names[899] <- "intermediate"
   conf_mat = confusionMatrix(as.factor(test$y22), as.factor(class_names))
   accuracy<-conf_mat
@@ -95,7 +95,7 @@ dataGroup <- read.csv("C:/Users/Desktop/stack/processedDataset.csv")
 dataset<-dataGroup %>% mutate(y22=recode(y22, 
                                          `1`="beginner",
                                          `2`="intermediate",
-                                         `3`="high",
+                                         `3`="advanced",
                                          `0`="unknown"))
 # Splitting data in train and test data
 split <- sample.split(dataset, SplitRatio = 0.7)
@@ -129,7 +129,7 @@ while(accuracy<0.70 || count<=25)
   class_names = colnames(pred_test)[apply(pred_test, 1, which.max)]
   result = data.frame(test$y22, class_names)
   sqrt(min(model_gbm$cv.error))
-  class_names[898] <- "high"
+  class_names[898] <- "advanced"
   class_names[899] <- "intermediate"
   conf_mat = confusionMatrix(as.factor(test$y22), as.factor(class_names))
   accuracy<-conf_mat
@@ -179,7 +179,7 @@ dataGroup <- read.csv("C:/Users/Desktop/stack/processedDataset.csv")
 dataset<-dataGroup %>% mutate(y22=recode(y22, 
                                          `1`="beginner",
                                          `2`="intermediate",
-                                         `3`="high",
+                                         `3`="advanced",
                                          `0`="unknown"))
 # Splitting data in train and test data
 split <- sample.split(dataset, SplitRatio = 0.7)
@@ -213,7 +213,7 @@ while(accuracy<0.65 || count<=15)
   class_names = colnames(pred_test)[apply(pred_test, 1, which.max)]
   result = data.frame(test$y22, class_names)
   sqrt(min(model_gbm$cv.error))
-  class_names[898] <- "high"
+  class_names[898] <- "advanced"
   class_names[899] <- "intermediate"
   conf_mat = confusionMatrix(as.factor(test$y22), as.factor(class_names))
   accuracy<-conf_mat
@@ -258,7 +258,7 @@ dataGroup <- read.csv("C:/Users/Desktop/stack/processedDataset.csv")
 dataset<-dataGroup %>% mutate(y22=recode(y22, 
                                          `1`="beginner",
                                          `2`="intermediate",
-                                         `3`="high",
+                                         `3`="advanced",
                                          `0`="unknown")
 # Splitting data in train and test data
 split <- sample.split(dataset, SplitRatio = 0.7)
@@ -286,15 +286,16 @@ dataGroup <- read.csv("C:/Users/Desktop/stack/processedDataset.csv")
 dataset<-dataGroup %>% mutate(y22=recode(y22, 
                                          `1`="beginner",
                                          `2`="intermediate",
-                                         `3`="high",
+                                         `3`="advanced",
                                          `0`="unknown"))
 # Splitting data in train and test data
 split <- sample.split(dataset, SplitRatio = 0.7)
 train <- subset(dataset, split == "TRUE")
 test <- subset(dataset, split == "FALSE")
 train_control = trainControl(method = "cv", number = 5, search = "grid")
-tunegrid <- expand.grid (n.trees = c(100:500),interaction.depth = 1,shrinkage =0.1,n.minobsinnode = 10)
-gbm_model <- train(y22~., 
+tunegrid <- expand.grid (n.trees = c(100:500),interaction.depth = 1,shrinkage =0.1,n.minobsinnode = 10) ### This line creates a data frame "tunegrid" with all possible combinations of hyperparameters for the grid search. 
+### It includes values for "n.trees" ranging from 100 to 500, "interaction.depth" set to 1, "shrinkage" set to 0.1, and "n.minobsinnode" set to 10.
+gbm_model <- train(y22~.,  ### This line trains the GBM model using the "train" function from the "caret" package. It performs grid search with cross-validation using the specified hyperparameter values.
                    data=train, 
                    method='gbm', 
                    metric = 'Accuracy',
@@ -312,7 +313,7 @@ dataGroup <- read.csv("C:/Users/Desktop/stack/processedDataset.csv")
 dataset<-dataGroup %>% mutate(y22=recode(y22, 
                                          `1`="beginner",
                                          `2`="intermediate",
-                                         `3`="high",
+                                         `3`="advanced",
                                          `0`="unknown"))
 # Splitting data in train and test data
 split <- sample.split(dataset, SplitRatio = 0.7)
@@ -340,13 +341,14 @@ dataGroup <- read.csv("C:/Users/Desktop/stack/processedDataset.csv")
 dataset<-dataGroup %>% mutate(y22=recode(y22, 
                                          `1`="beginner",
                                          `2`="intermediate",
-                                         `3`="high",
+                                         `3`="advanced",
                                          `0`="unknown"))
 # Splitting data in train and test data
 split <- sample.split(dataset, SplitRatio = 0.7)
 train <- subset(dataset, split == "TRUE")
 test <- subset(dataset, split == "FALSE")
-Test_Fun <- function(x) {    
+Test_Fun <- function(x) {    ### This code block defines the function "Test_Fun," which takes the hyperparameter "x" (in this case, "n.minobsinnode") as input and trains the GBM model with the specified hyperparameter value. 
+  ### It then calculates and returns the accuracy of the model.
     model_gbm = gbm(y22 ~.,
                     data = train,
                     distribution = "multinomial",
@@ -361,7 +363,7 @@ Test_Fun <- function(x) {
                             type = "response")
     class_names = colnames(pred_test)[apply(pred_test, 1, which.max)]
     result = data.frame(test$y22, class_names)
-    class_names[898] <- "high"
+    class_names[898] <- "advanced"
     class_names[899] <- "intermediate"
     conf_mat = confusionMatrix(as.factor(test$y22), as.factor(class_names))
     accuracy<-conf_mat
@@ -370,6 +372,8 @@ Test_Fun <- function(x) {
   list(Score=mean(accuracy<-(conf_mat$overall[1]))) 
 }
 ## Set larger init_points and n_iter for better optimization result
+### This line performs Bayesian Optimization using the "BayesianOptimization" function from the "MlBayesOpt" package. It searches for the optimal value of "n.minobsinnode" within the bounds of 5 to 15. The "init_points" parameter specifies the number of initial points to be evaluated, and "n_iter" specifies the number of iterations for optimization. 
+###The acquisition function used is "ucb" (Upper Confidence Bound), and "kappa" and "eps" are parameters of the acquisition function.
 OPT_Res <- BayesianOptimization(Test_Fun,
                                 bounds = list(x = c(5:15)),
                                 init_points = 15,
@@ -387,7 +391,7 @@ dataGroup <- read.csv("C:/Users/Desktop/stack/processedDataset.csv")
 dataset<-dataGroup %>% mutate(y22=recode(y22, 
                                          `1`="beginner",
                                          `2`="intermediate",
-                                         `3`="high",
+                                         `3`="advanced",
                                          `0`="unknown"))
 # Splitting data in train and test data
 split <- sample.split(dataset, SplitRatio = 0.7)
@@ -408,7 +412,7 @@ Test_Fun <- function(x) {
                           type = "response")
   class_names = colnames(pred_test)[apply(pred_test, 1, which.max)]
   result = data.frame(test$y22, class_names)
-  class_names[898] <- "high"
+  class_names[898] <- "advanced"
   class_names[899] <- "intermediate"
   conf_mat = confusionMatrix(as.factor(test$y22), as.factor(class_names))
   accuracy<-conf_mat
@@ -437,14 +441,14 @@ dataGroup <- read.csv("C:/Users/Desktop/stack/processedDataset.csv")
   dataset<-dataGroup %>% mutate(y22=recode(y22, 
                                            `1`="beginner",
                                            `2`="intermediate",
-                                           `3`="high",
+                                           `3`="advanced",
                                            `0`="unknown"))
 
   # Splitting data in train and test data
   split <- sample.split(dataset, SplitRatio = 0.7)  
   train <- subset(dataset, split == "TRUE")
   test <- subset(dataset, split == "FALSE")
-  model_gbm = gbm(y22 ~.,
+  model_gbm = gbm(y22 ~., 
                   data = train,
                   distribution = "multinomial",
                   cv.folds = 2,
@@ -459,9 +463,8 @@ dataGroup <- read.csv("C:/Users/Desktop/stack/processedDataset.csv")
   class_names = colnames(pred_test)[apply(pred_test, 1, which.max)]
   result = data.frame(test$y22, class_names)
   sqrt(min(model_gbm$cv.error))
-  class_names[898] <- "high"
-  class_names[899] <- "intermediate"
-  #conf_mat = confusionMatrix(test$y22, as.factor(class_names))
+  class_names[898] <- "advanced"
+  class_names[899] <- "intermediate" 
   conf_mat = confusionMatrix(as.factor(test$y22), as.factor(class_names))
   accuracy<-conf_mat
   accuracy<-(conf_mat$overall[1])
@@ -469,9 +472,11 @@ dataGroup <- read.csv("C:/Users/Desktop/stack/processedDataset.csv")
 }
 library(nloptr)
 # Bounded version of Nelder-Mead
+### These lines define the lower and upper bounds for the hyperparameter "minobsinnode" (the minimum number of observations in a terminal node) that will be optimized.                              
 lower <- 5
 upper <- 15
-S <- neldermead(6, optimize, lower, upper, nl.info = TRUE)
+S <- neldermead(6, optimize, lower, upper, nl.info = TRUE) ### This line initiates the Nelder-Mead optimization process using the "neldermead" function from the "nloptr"ackage. 
+###The "optimize" function defined earlier will be used for optimization, and the "minobsinnode" hyperparameter will be optimized within the specified bounds.
 end_time <- Sys.time()
 end_time - start_time
 mem_used()
@@ -484,7 +489,7 @@ optimize <-function(shrinkage){
   dataset<-dataGroup %>% mutate(y22=recode(y22, 
                                            `1`="beginner",
                                            `2`="intermediate",
-                                           `3`="high",
+                                           `3`="advanced",
                                            `0`="unknown"))
   
   # Splitting data in train and test data
@@ -506,7 +511,7 @@ optimize <-function(shrinkage){
   class_names = colnames(pred_test)[apply(pred_test, 1, which.max)]
   result = data.frame(test$y22, class_names)
   sqrt(min(model_gbm$cv.error))
-  class_names[898] <- "high"
+  class_names[898] <- "advanced"
   class_names[899] <- "intermediate" 
   conf_mat = confusionMatrix(as.factor(test$y22), as.factor(class_names))
   accuracy<-conf_mat
@@ -536,7 +541,7 @@ library(dplyr)
 dataset<-dataGroup %>% mutate(y22=recode(y22, 
                                          `1`="beginner",
                                          `2`="intermediate",
-                                         `3`="high",
+                                         `3`="advanced",
                                          `0`="unknown"))
 dataset
 # Splitting data in train and test data
@@ -574,7 +579,7 @@ while(count2 <= 17){
     class_names = colnames(pred_test)[apply(pred_test, 1, which.max)]
     result = data.frame(test$y22, class_names)
     sqrt(min(model_gbm$cv.error))
-    class_names[898] <- "high"
+    class_names[898] <- "advanced"
     class_names[899] <- "intermediate"
     #conf_mat = confusionMatrix(test$y22, as.factor(class_names))
     conf_mat = confusionMatrix(as.factor(test$y22), as.factor(class_names))
@@ -610,7 +615,7 @@ dataGroup <- read.csv("C:/Users/Desktop/stack/processedDataset.csv")
 dataset<-dataGroup %>% mutate(y22=recode(y22, 
                                          `1`="beginner",
                                          `2`="intermediate",
-                                         `3`="high",
+                                         `3`="advanced",
                                          `0`="unknown"))
 # Splitting data in train and test data
 split <- sample.split(dataset, SplitRatio = 0.7)
@@ -644,7 +649,7 @@ while(count2 <= 17){
     class_names = colnames(pred_test)[apply(pred_test, 1, which.max)]
     result = data.frame(test$y22, class_names)
     sqrt(min(model_gbm$cv.error))
-    class_names[898] <- "high"
+    class_names[898] <- "advanced"
     class_names[899] <- "intermediate"   
     conf_mat = confusionMatrix(as.factor(test$y22), as.factor(class_names))
     accuracy<-conf_mat
