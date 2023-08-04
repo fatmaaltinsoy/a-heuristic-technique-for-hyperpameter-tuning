@@ -14,14 +14,14 @@ resultList <- list("accuracy")
 resultList2 <- list("ntree")
 resultList3 <- list("mtry")
 resultList4 <- list("accuracyOld")
-### This line creates a subset of the original dataset containing only the rows that belong to the training set.
+### These lines create a subset of the original dataset containing only the rows that belong to the training set.
 train <- subset(dataset, split == "TRUE")
 train$y22 <- as.factor(train$y22)  ## y22-> experience
 test <- subset(dataset, split == "FALSE")
 ###proposed method optimization start###
-mtry<-c(1:8) ### This line creates a vector "mtry" with values ranging from 1 to 8.
+mtry<-c(1:8) ### This line creates a vector "mtry" with values ranging from 1 to 8. You can change it.
 j<- mtry[1] ### This line sets the initial value of "j" as the first element of the "mtry" vector (which is 1).
-ntree<-c(100:500) ### This line creates a vector "ntree" with values ranging from 100 to 500.
+ntree<-c(100:500) ### This line creates a vector "ntree" with values ranging from 100 to 500. You can change it.
 j<-ntree[1] ### This line sets the initial value of "j" as the first element of the "ntree" vector (which is 100).
 ### These variables are used to keep track of accuracy values and the best accuracy achieved during the optimization process.
 flag<-0
@@ -30,9 +30,9 @@ accuracyOld<-0.2
 max<--1
 maxMtry<--1
 count<-0
-### This line initiates a while loop that will continue until the accuracy reaches 0.60 or the count exceeds 50 (whichever condition is met first). The loop aims to find the optimal hyperparameters within these constraints.
-
-Inside the while loop, the code trains a "randomForest" model with the current values of "j" and "mtry", makes predictions on the test set, and calculates accuracy. It then compares the accuracy with the best accuracy achieved so far and updates the variables accordingly.
+### This line initiates a while loop that will continue until the accuracy reaches 0.60 or the count exceeds 50 (whichever condition is met first). 
+###The loop aims to find the optimal hyperparameters within these constraints. Inside the while loop, the code trains a "randomForest" model with the current values of "j" and "mtry", makes predictions on the test set,
+###and calculates accuracy. It then compares the accuracy with the best accuracy achieved so far and updates the variables accordingly.
 while(accuracy<0.60 || count<=50) ### count is the number of iterations. You can change it.
 {
   accuracyOld<-accuracy
@@ -45,7 +45,8 @@ while(accuracy<0.60 || count<=50) ### count is the number of iterations. You can
    max<-accuracy
    maxMtry<-j 
   }
-  ### resultList and other lists are updated with the accuracy values obtained during each iteration. The loop adjusts the values of "j" (ntree) based on the accuracy improvements. The loop continues until the stopping condition is met or the maximum number of iterations is reached.
+  ### resultList and other lists are updated with the accuracy values obtained during each iteration. The loop adjusts the values of "j" (ntree) based on the accuracy improvements. 
+  ###The loop continues until the stopping condition is met or the maximum number of iterations is reached.
   resultList <- list.append(resultList,accuracy)
   resultList2 <- list.append(resultList2,500)
   resultList3 <- list.append(resultList3,j)
@@ -82,9 +83,11 @@ mem_used() ### This function from the "pryr" package is used to calculate the me
 
 #hyperparameter tuning grid and random search
 start_time <- Sys.time()
-tunegrid <- expand.grid(.mtry=c(1:8))  ### This line creates a grid of hyperparameters for "mtry" with values ranging from 1 to 8. The "expand.grid" function generates all possible combinations of the specified hyperparameter values.
+tunegrid <- expand.grid(.mtry=c(1:8))  ### This line creates a grid of hyperparameters for "mtry" with values ranging from 1 to 8. 
+###The "expand.grid" function generates all possible combinations of the specified hyperparameter values.
 modellist <- list() ### This line initializes an empty list to store the trained models for different "ntree" values.
-### The for loop iterates over the "ntree" values (100, 200, 300, 400, and 500). Inside the loop, the train function is used to train a random forest model (method='rf') on the training dataset with the current "ntree" value. The "mtry" hyperparameter is tuned using the "tunegrid" grid, and the evaluation metric used is "Accuracy". The trained model is added to the "modellist" with a unique key based on the current "ntree" value.
+### Inside the loop, the train function is used to train a random forest model (method='rf') on the training dataset with the current "ntree" value. 
+###The "mtry" hyperparameter is tuned using the "tunegrid" grid, and the evaluation metric used is "Accuracy". The trained model is added to the "modellist" with a unique key based on the current "ntree" value.
 for (ntree in c(100,200,300,400,500)){
   rf_default <- train(y22~., 
                       data=train, 
@@ -106,7 +109,6 @@ mem_used()
 pred_test <- predict(rf_default, test)
 pred_test
 confusionMatrix(table(pred_test,test$y22))
-
 
 #Bayesian Optimization
 library(MlBayesOpt)
@@ -141,7 +143,8 @@ optimize <-function(mtry){
 library(nloptr)
 lower <- 1
 upper <- 8
-### This line applies the bounded version of the Nelder-Mead optimization algorithm to find the optimal "mtry" value that maximizes the accuracy of the random forest model. The nl.info = TRUE argument enables displaying optimization information.
+### This line applies the bounded version of the Nelder-Mead optimization algorithm to find the optimal "mtry" value that maximizes the accuracy of the random forest model. 
+###The nl.info = TRUE argument enables displaying optimization information.
 S <- neldermead(2, optimize, lower, upper, nl.info = TRUE)
 end_time <- Sys.time()
 end_time - start_time
