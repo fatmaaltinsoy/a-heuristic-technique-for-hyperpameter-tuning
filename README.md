@@ -71,3 +71,10 @@ install.packages("e1071")
 install.packages("utiml")
 install.packages("mldr")
 ```
+# Execution Order of the Files
+For the given files in this repository, follow the sequence of execution mentioned below:
+1. Run the `labeling.R` file first. This will create labels for your data.
+2. Next, run the `code.R` file. This will process the data and prepare it for model fitting.
+3. After this, you can proceed with model fitting. Run the `gbm.R`, `svm.R`, `EBR.R`, `EPS.R`, `randomForest.R` files in any order as per your requirement. These files each implement different machine learning models and their execution order is not dependent on each other.
+
+In each file, hyperparameter optimization is conducted utilizing several methods, namely grid search, random search, Bayesian optimization, and Nelder-Mead. The goal is to enhance the accuracy of the programming experience prediction. The results obtained from these optimizations can be compared to determine the most efficient model and hyperparameters.
